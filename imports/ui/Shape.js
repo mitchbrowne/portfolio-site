@@ -23,13 +23,13 @@ export default class Shape extends Component {
                   shapeId,
                   shapeAttributes,
                 );
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 700) {
       console.log("Small window update");
       Meteor.call('shapes_small.setAttributes',
                     shapeId,
                     shapeAttributes,
                   );
-    } else if (window.innerWidth < 1550) {
+    } else if (window.innerWidth < 1150) {
       console.log("Medium window update");
       Meteor.call('shapes_medium.setAttributes',
                     shapeId,
@@ -53,10 +53,12 @@ export default class Shape extends Component {
       // -webkit-transform: 'translate(20px, 20px)',
       transform: `translate(${shape.data_x}px, ${shape.data_y}px)`
     }
+    const isEditMode = this.props.editMode;
+    console.log(isEditMode);
     return (
       <div
         key={shape._id}
-        className={shape.className}
+        className={isEditMode ? shape.className : 'resize-drag-off'}
         id={shape.name}
         style={shapeStyle}
         data-x={shape.data_x}

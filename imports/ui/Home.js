@@ -15,7 +15,7 @@ class Home extends Component {
     this.state = {
       width: 0,
       height: 0,
-      editMode: true,
+      editMode: false,
      };
     // this.dragMoveListener = this.dragMoveListener.bind(this);
 
@@ -93,10 +93,10 @@ class Home extends Component {
   renderShapes() {
     let shapes;
     console.log(window.innerWidth);
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 700) {
       console.log("Small window");
       shapes = this.props.shapes_small;
-    } else if (window.innerWidth < 1550) {
+    } else if (window.innerWidth < 1150) {
       console.log("Medium window");
       shapes = this.props.shapes_medium;
     } else {
@@ -104,7 +104,7 @@ class Home extends Component {
       shapes = this.props.shapes_large;
     }
     if (shapes) {
-      return shapes.map((shape) => <Shape key={shape._id} shape={shape} />);
+      return shapes.map((shape) => <Shape key={shape._id} shape={shape} editMode={this.state.editMode}/>);
     }
   }
 
@@ -118,9 +118,15 @@ class Home extends Component {
       window.removeEventListener('resize', this.updateDimensions);
     }
 
+    handleEdit(event) {
+      console.log("HEY");
+      this.setState({editMode: !this.state.editMode});
+    }
+
   render() {
     return (
       <div id="container">
+        <div id="edit-button" onClick={this.handleEdit.bind(this)}>Let's Work Together!</div>
         {this.renderShapes()}
       </div>
     );
