@@ -1,17 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import Shape from './Shape';
 
-import { Locations } from '../api/locations.js';
-import { Shapes } from '../api/shapes.js';
+import { Shapes, Shapes_Small, Shapes_Medium, Shapes_Large } from '../api/shapes.js';
 
-import interact from 'interactjs'
+import interact from 'interactjs';
+import $ from 'jquery';
 
 class Home extends Component {
   constructor() {
     super();
+    this.state = {
+      width: 0,
+      height: 0,
+      editMode: true,
+     };
     // this.dragMoveListener = this.dragMoveListener.bind(this);
 
     interact('.resize-drag')
@@ -37,6 +42,8 @@ class Home extends Component {
 
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
+            // target.style.fontSize = (event.rect.height / 10) + 'px';
+            target.style.fontSize = (event.rect.width / 10) + 'px';
           }
         },
         modifiers: [
@@ -84,11 +91,32 @@ class Home extends Component {
   }
 
   renderShapes() {
-    let shapes = this.props.shapes;
+    let shapes;
+    console.log(window.innerWidth);
+    if (window.innerWidth < 800) {
+      console.log("Small window");
+      shapes = this.props.shapes_small;
+    } else if (window.innerWidth < 1550) {
+      console.log("Medium window");
+      shapes = this.props.shapes_medium;
+    } else {
+      console.log("Large window");
+      shapes = this.props.shapes_large;
+    }
     if (shapes) {
       return shapes.map((shape) => <Shape key={shape._id} shape={shape} />);
     }
   }
+
+  updateDimensions = () => {
+      this.setState({ width: window.innerWidth, height: window.innerHeight });
+    };
+    componentDidMount() {
+      window.addEventListener('resize', this.updateDimensions);
+    }
+    componentWillUnmount() {
+      window.removeEventListener('resize', this.updateDimensions);
+    }
 
   render() {
     return (
@@ -99,9 +127,11 @@ class Home extends Component {
   }
 }
 
-
 export default withTracker(() => {
   return {
     shapes: Shapes.find({}).fetch(),
+    shapes_small: Shapes_Small.find({}).fetch(),
+    shapes_medium: Shapes_Medium.find({}).fetch(),
+    shapes_large: Shapes_Large.find({}).fetch(),
   }
 })(Home);

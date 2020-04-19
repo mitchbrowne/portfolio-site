@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Chelsea+Market&display=swap');
+
+/* * {
+  border: 1px red solid;
+} */
+
+
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #fad5c0;
+}
+
+#container {
+  height: 98vh;
+  margin: 1vh;
+  min-height: 100%;
+  position: relative;
+}
+
+.resize-drag {
+  font-family: 'Alata', sans-serif;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+  width: 25%;
+  min-height: 6.5em;
+  position: absolute;
+  background-color: #deebe4;
+  color: #bc805b;
+  /* padding: 4%; */
+  touch-action: none;
+  user-select: none;
+  box-sizing: border-box;
+  -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0,0,0,0.2);
+}
+
+// .resize-drag:hover {
+//   border: 1px #bc805b dashed;
+// }
+
+@mixin lhCrop($line-height) {
+  &::before {
+    content: '';
+    // display: block;
+    // height: 0;
+    // width: 0;
+    margin-top: calc((1 - #{$line-height}) * 0.5em);
+    // margin-bottom: calc((1 - #{$line-height}) * 0.5em);
+  }
+}
+
+#drag-1 {
+    @include lhCrop(12); //line-height: 1.2
+    line-height: 72pt;
+  font-family: 'Chelsea Market', cursive;
+  background-color: transparent;
+  color: white;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
