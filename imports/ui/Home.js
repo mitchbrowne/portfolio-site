@@ -126,7 +126,7 @@ class Home extends Component {
   render() {
     return (
       <div id="container">
-        <div id="edit-button" onClick={this.handleEdit.bind(this)}>Let's Work Together!</div>
+        <div id="edit-button" onMouseDown={this.handleEdit.bind(this)}>Let's Work Together!</div>
         {this.renderShapes()}
       </div>
     );

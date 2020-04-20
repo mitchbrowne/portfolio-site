@@ -12,6 +12,7 @@ body {
 }
 
 #container {
+  z-index: 10;
   height: 98vh;
   margin: 1vh;
   min-height: 100%;
@@ -19,6 +20,7 @@ body {
 }
 
 #edit-button {
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +37,7 @@ body {
 }
 
 .resize-drag {
+  z-index: -10;
   font-family: 'Alata', sans-serif;
   text-align: center;
   line-height: 1;
@@ -55,13 +58,15 @@ body {
   justify-content: center;
   align-items: center;
   box-shadow: 0.1em 0.1em 0.3em rgba(0,0,0,0.2);
-}
-
-.resize-drag:hover {
   border: 1px #bc805b dashed;
 }
 
+.resize-drag:hover {
+  border: 1.5px #bc805b dashed;
+}
+
 .resize-drag-off {
+  z-index: -10;
   font-family: 'Alata', sans-serif;
   text-align: center;
   line-height: 1;
