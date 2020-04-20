@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import { Shapes } from '../api/shapes.js';
+import { Shapes } from '../../api/shapes.js';
 
 export default class Shape extends Component {
   constructor() {
@@ -46,6 +46,7 @@ export default class Shape extends Component {
 
   render() {
     const shape = this.props.shape;
+    // add href link for each shape i.e. 'about' or 'projects' to then add to href
     const shapeStyle = {
       width: `${shape.width}px`,
       height: `${shape.height}px`,
@@ -63,9 +64,17 @@ export default class Shape extends Component {
         style={shapeStyle}
         data-x={shape.data_x}
         data-y={shape.data_y}
-        onMouseUp={this.handleUpdateAttributes}
+        onMouseUp={isEditMode ? this.handleUpdateAttributes : ''}
       >
-        {shape.text}
+        {isEditMode
+          ? <>
+          {shape.text}
+          </>
+          : <a href="/about">
+            {shape.text}
+          </a>
+        }
+
       </div>
     )
   }

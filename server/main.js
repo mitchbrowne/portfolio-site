@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Locations } from '../imports/api/locations.js';
 import { Shapes, Shapes_Small, Shapes_Medium, Shapes_Large } from '../imports/api/shapes.js';
 
 Meteor.startup(() => {

@@ -11,6 +11,11 @@ body {
   background-color: #fad5c0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #container {
   z-index: 10;
   height: 98vh;

@@ -2,9 +2,9 @@ import React, { Component, useLayoutEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import Shape from './Shape';
+import Shape from '../components/Shape';
 
-import { Shapes, Shapes_Small, Shapes_Medium, Shapes_Large } from '../api/shapes.js';
+import { Shapes, Shapes_Small, Shapes_Medium, Shapes_Large } from '../../api/shapes.js';
 
 import interact from 'interactjs';
 import $ from 'jquery';
